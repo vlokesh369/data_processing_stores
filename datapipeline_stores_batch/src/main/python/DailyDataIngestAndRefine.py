@@ -11,9 +11,6 @@ from src.main.python.functions import read_schema
 # Creating spark session
 spark = SparkSession.builder.appName("DataIngestAndRefine").master("local").getOrCreate()
 
-# Creating spark context (if required)
-sc = spark.sparkContext
-
 # Fetching config file
 config = configparser.ConfigParser()
 config.read(r'../projectconfigs/config.ini')  # Read config file properties
@@ -29,8 +26,8 @@ holdFileSchema = read_schema(holdFileSchemaFromConf)
 # Defining current date landing zone
 dateToday = datetime.now()
 yesterDate = dateToday - timedelta(1)
-# currDayZoneSuffix = "_" + dateToday.strftime("%d%m%Y")  # _05062020
-# prevDayZoneSuffix = "_" + yesterDate.strftime("%d%m%Y")  # _04062020
+# currDayZoneSuffix = "_" + dateToday.strftime("%d%m%Y")  # 
+# prevDayZoneSuffix = "_" + yesterDate.strftime("%d%m%Y")  # 
 currDayZoneSuffix = "_03122021"  # hardcoded for my sample data
 prevDayZoneSuffix = "_02122021"  # hardcoded for my sample data
 
